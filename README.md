@@ -10,7 +10,7 @@ A very simple work flow engine, which contains only one core java file.
 - 若该分支不指定子分支，则该分支为结束节点。
 
 #### 术语对照表
-name | 符号  
+名称|代码  
 -|-   
 起始节点|START    
 流程处理器|businessProcessor  
