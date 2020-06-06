@@ -1,7 +1,7 @@
 # SimpleWorkFlow
 A very simple work flow engine, which contains only one core java file.
 
-#### 简单易懂
+#### 简洁的思想
 - 基于Xml的流程配置，整个流程的流动可以直接在xml里追踪。
 - 一个起始节点（START），若干分支路线（可自定义）。  
 - 每个分支路线都是一个独立的流程处理器，分支可以指定子分支
