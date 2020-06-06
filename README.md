@@ -2,12 +2,12 @@
 A very simple work flow engine, which contains only one core java file.
 
 #### 简洁的设计思想
-- 基于Xml的流程配置，整个流程的流动可以直接在xml里追踪，一目了然。
+- 基于XML的流程配置，整个流程的流动可以直接在xml里追踪，一目了然。
 - 一个起始节点（START），若干分支路线（可自定义）。  
 - 每个分支路线都是一个独立的流程处理器，分支可以指定子分支
 - 如果分支不指定子分支，则该分支运行完毕后整个工作量结束。
 
-#### 以【下单工作流】举例如何配置xml：
+#### 以【下单工作流】举例如何配置XML：
 ```
 <bean id="placeAnOrderFlow" class="java.util.HashMap">
     <constructor-arg>
