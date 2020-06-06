@@ -10,14 +10,11 @@ A very simple work flow engine, which contains only one core java file.
 - 若该分支不指定子分支，则该分支为结束节点。
 
 #### 术语对照表
-- 起始节点      
-START    
-
-- 流程处理器  
-businessProcessor
-  
-- 子分支  
-nextWorks
+name | 符号  
+-|-   
+起始节点|START    
+流程处理器|businessProcessor  
+子分支|nextWorks
 
 #### 以【下单工作流】举例如何配置XML：
 ```
