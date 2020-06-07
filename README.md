@@ -89,7 +89,6 @@ A very simple work flow engine, which contains only one core java file.
         txnContext.setProcessResult("CONTINUE");
     }
 ```
-日志：
 ```
 2020-06-07 23:18:49.254  INFO 10424 --- [           main] c.l.w.processor.CreateOrderProcessor     : LockInventoryProcessor processing...
 2020-06-07 23:18:49.254  INFO 10424 --- [           main] c.l.w.p.DecreaseInventoryProcessor       : DecreaseInventoryProcessor processing...
@@ -103,7 +102,6 @@ A very simple work flow engine, which contains only one core java file.
         txnContext.setProcessResult("FAIL");
     }
 ```
-日志：
 ```
 2020-06-07 23:24:43.013  INFO 7492 --- [           main] c.l.w.processor.CreateOrderProcessor     : LockInventoryProcessor processing...
 2020-06-07 23:24:43.013  INFO 7492 --- [           main] c.l.workflow.processor.FailProcessor     : Operation failed！
