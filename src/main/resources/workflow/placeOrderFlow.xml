@@ -32,6 +32,7 @@
                         <property name="nextWorks">
                             <map>
                                 <entry key="CONTINUE" value="decreaseInventoryProcessorProxy"/>
+                                <entry key="FAIL" value="failProcessorProxy"/>
                             </map>
                         </property>
                     </bean>
@@ -54,6 +55,14 @@
                     <bean class="com.lnwazg.workflow.engine.BusinessProcessorProxy">
                         <property name="businessProcessor">
                             <ref bean="createOrderProcessor"/>
+                        </property>
+                    </bean>
+                </entry>
+                <!--操作失败-->
+                <entry key="failProcessorProxy">
+                    <bean class="com.lnwazg.workflow.engine.BusinessProcessorProxy">
+                        <property name="businessProcessor">
+                            <ref bean="failProcessor"/>
                         </property>
                     </bean>
                 </entry>

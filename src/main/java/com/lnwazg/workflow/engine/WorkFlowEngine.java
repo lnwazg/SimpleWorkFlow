@@ -3,6 +3,7 @@ package com.lnwazg.workflow.engine;
 import com.lnwazg.workflow.engine.exception.BusinessException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.util.Map;
 /**
  * 工作流引擎
  */
+@Component
 public class WorkFlowEngine {
     private Logger logger = LoggerFactory.getLogger(WorkFlowEngine.class);
 
@@ -20,8 +22,8 @@ public class WorkFlowEngine {
      */
     private Map<String, Map<String, BusinessProcessorProxy>> workFlowRegistry = new HashMap<String, Map<String, BusinessProcessorProxy>>();
 
-    public WorkFlowEngine(Map<String, Map<String, BusinessProcessorProxy>> workFlowRegistry) {
-        this.workFlowRegistry = workFlowRegistry;
+    public void register(String id, Map<String, BusinessProcessorProxy> m) {
+        workFlowRegistry.put(id, m);
     }
 
     /**
@@ -66,9 +68,10 @@ public class WorkFlowEngine {
 
     /**
      * 设置当前线程的TxnContext对象
+     *
      * @param txnContext
      */
-    public static void setThreadLocalTxnContext(WorkFlowContext txnContext) {
+    public void setThreadLocalTxnContext(WorkFlowContext txnContext) {
         txnContextThreadLocal.set(txnContext);
     }
 }
