@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LockInventoryProcessor implements BusinessProcessor {
-    private Logger logger = LoggerFactory.getLogger(CreateOrderProcessor.class);
+    private Logger logger = LoggerFactory.getLogger(LockInventoryProcessor.class);
 
     @Override
     public void process(WorkFlowContext txnContext) throws BusinessException {
