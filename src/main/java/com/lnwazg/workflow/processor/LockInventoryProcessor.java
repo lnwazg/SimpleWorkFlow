@@ -12,9 +12,9 @@ public class LockInventoryProcessor implements BusinessProcessor {
     private Logger logger = LoggerFactory.getLogger(LockInventoryProcessor.class);
 
     @Override
-    public void process(WorkFlowContext txnContext) throws BusinessException {
+    public void process(WorkFlowContext workFlowContext) throws BusinessException {
         logger.info("LockInventoryProcessor processing...");
-        txnContext.setProcessResult("CONTINUE");
-//        txnContext.setProcessResult("FAIL");
+        workFlowContext.setProcessResult("CONTINUE");
+//        workFlowContext.setProcessResult("FAIL");
     }
 }

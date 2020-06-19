@@ -12,8 +12,8 @@ public class DecreaseInventoryProcessor implements BusinessProcessor {
     private Logger logger = LoggerFactory.getLogger(DecreaseInventoryProcessor.class);
 
     @Override
-    public void process(WorkFlowContext txnContext) throws BusinessException {
+    public void process(WorkFlowContext workFlowContext) throws BusinessException {
         logger.info("DecreaseInventoryProcessor processing...");
-        txnContext.setProcessResult("CONTINUE");
+        workFlowContext.setProcessResult("CONTINUE");
     }
 }

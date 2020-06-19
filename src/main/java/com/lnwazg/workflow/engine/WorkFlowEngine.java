@@ -15,7 +15,7 @@ import java.util.Map;
 public class WorkFlowEngine {
     private Logger logger = LoggerFactory.getLogger(WorkFlowEngine.class);
 
-    private static ThreadLocal<WorkFlowContext> txnContextThreadLocal = new ThreadLocal<WorkFlowContext>();
+    private static ThreadLocal<WorkFlowContext> workFlowContextThreadLocal = new ThreadLocal<WorkFlowContext>();
 
     /**
      * 工作流集合，beanId-->Map<处理器名称-->处理器对象>
@@ -30,33 +30,33 @@ public class WorkFlowEngine {
      * 执行业务工作流
      */
     public void processWork() {
-        WorkFlowContext txnContext = txnContextThreadLocal.get();
-        if (txnContext == null) {
-            logger.error("txnContext is null!");
+        WorkFlowContext workFlowContext = workFlowContextThreadLocal.get();
+        if (workFlowContext == null) {
+            logger.error("workFlowContext is null!");
             return;
         }
         try {
             String nextWorkValue = null;
             BusinessProcessorProxy nextBusinessProcessorProxy = null;
             // 获取渠道类型的工作流
-            Map<String, BusinessProcessorProxy> workFlow = workFlowRegistry.get(txnContext.getWorkFlowId());
+            Map<String, BusinessProcessorProxy> workFlow = workFlowRegistry.get(workFlowContext.getWorkFlowId());
             if (workFlow == null) {
                 // 没有配置工作流，一般不可能，所以是严重异常
-                throw new BusinessException("workflow not found, bean id=" + txnContext.getWorkFlowId());
+                throw new BusinessException("workflow not found, bean id=" + workFlowContext.getWorkFlowId());
             }
-            BusinessProcessorProxy businessProcessorProxy = workFlow.get(txnContext.getCurrentWork());//START
-            if (txnContext.getProcessResult() != null) {
-                nextWorkValue = businessProcessorProxy.getNextWorks().get(txnContext.getProcessResult());//checkCanRollback
+            BusinessProcessorProxy businessProcessorProxy = workFlow.get(workFlowContext.getCurrentWork());//START
+            if (workFlowContext.getProcessResult() != null) {
+                nextWorkValue = businessProcessorProxy.getNextWorks().get(workFlowContext.getProcessResult());//checkCanRollback
                 nextBusinessProcessorProxy = workFlow.get(nextWorkValue);
             }
             // 结束
             if (nextBusinessProcessorProxy == null) {
                 return;
             }
-            txnContext.setProcessResult(null);
-            txnContext.setCurrentWork(nextWorkValue);
+            workFlowContext.setProcessResult(null);
+            workFlowContext.setCurrentWork(nextWorkValue);
             logger.debug("Process work ,currentWork=" + nextWorkValue);
-            nextBusinessProcessorProxy.process(txnContext);
+            nextBusinessProcessorProxy.process(workFlowContext);
         } catch (Exception e) {
             // 系统异常
             logger.error(e.getMessage(), e);
@@ -69,9 +69,9 @@ public class WorkFlowEngine {
     /**
      * 设置当前线程的TxnContext对象
      *
-     * @param txnContext
+     * @param workFlowContext
      */
-    public void setThreadLocalTxnContext(WorkFlowContext txnContext) {
-        txnContextThreadLocal.set(txnContext);
+    public void setThreadLocalContext(WorkFlowContext workFlowContext) {
+        workFlowContextThreadLocal.set(workFlowContext);
     }
 }

@@ -23,7 +23,7 @@ public class Application {
         //给该上下文对象指定要处理的目标工作流Id
         workFlowContext.setWorkFlowId("placeAnOrderFlow");
         //给上下文对象注册到引擎
-        workFlowEngine.setThreadLocalTxnContext(workFlowContext);
+        workFlowEngine.setThreadLocalContext(workFlowContext);
         //执行引擎
         workFlowEngine.processWork();
     }

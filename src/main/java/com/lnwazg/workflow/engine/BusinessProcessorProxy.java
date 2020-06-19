@@ -22,12 +22,12 @@ public class BusinessProcessorProxy {
     /**
      * 执行实际业务逻辑
      *
-     * @param txnContext 交易上下文
+     * @param workFlowContext 交易上下文
      * @throws BusinessException
      */
-    public void process(WorkFlowContext txnContext) throws BusinessException {
+    public void process(WorkFlowContext workFlowContext) throws BusinessException {
         if (businessProcessor != null) {
-            businessProcessor.process(txnContext);
+            businessProcessor.process(workFlowContext);
         }
     }
 

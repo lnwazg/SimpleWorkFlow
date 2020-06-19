@@ -9,8 +9,8 @@ public interface BusinessProcessor {
     /**
      * 处理业务
      *
-     * @param txnContext 交易上下文
+     * @param workFlowContext 交易上下文
      * @throws BusinessException
      */
-    public void process(WorkFlowContext txnContext) throws BusinessException;
+    public void process(WorkFlowContext workFlowContext) throws BusinessException;
 }

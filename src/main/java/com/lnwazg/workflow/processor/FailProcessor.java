@@ -12,8 +12,8 @@ public class FailProcessor implements BusinessProcessor {
     private Logger logger = LoggerFactory.getLogger(FailProcessor.class);
 
     @Override
-    public void process(WorkFlowContext txnContext) throws BusinessException {
+    public void process(WorkFlowContext workFlowContext) throws BusinessException {
         logger.info("Operation failed！");
-        txnContext.setProcessResult("CONTINUE");
+        workFlowContext.setProcessResult("CONTINUE");
     }
 }
